@@ -1,32 +1,26 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import '../styles/identification.css'
+import LabelAndInput from '../components/LabelAndInput'
 
 function Connection() {
   return (
     <div className="flexColumnCenter">
       <form className="flexColumnCenter">
-        <div className="labelAndInput">
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            placeholder="Ex. nom.prenom@gmail.com"
-            autoFocus
-            required
-          />
-        </div>
-        <div className="labelAndInput">
-          <label htmlFor="password">Mot de passe</label>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            placeholder="Mot de passe secret"
-            required
-          />
-        </div>
+        <LabelAndInput
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Ex. nom.prenom@gmail.com"
+          autoFocus
+          label="Email"
+        />
+        <LabelAndInput
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Mot de passe secret"
+          label="Mot de passe"
+        />
         <input type="submit" value="Connexion" />
       </form>
       <p>-- ou --</p>
