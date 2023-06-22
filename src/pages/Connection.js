@@ -3,9 +3,13 @@ import { Link } from 'react-router-dom'
 import LabelAndInput from '../components/LabelAndInput'
 
 function Connection() {
+  function handelSubmit(e) {
+    e.preventDefault()
+  }
+
   return (
     <div className="flexColumnCenter">
-      <form className="flexColumnCenter">
+      <form onSubmit={handelSubmit} className="flexColumnCenter">
         <LabelAndInput
           type="email"
           name="email"
