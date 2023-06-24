@@ -1,9 +1,9 @@
-import React from 'react'
-import LabelAndInput from '../components/LabelAndInput'
+import React from 'react';
+import LabelAndInput from '../components/LabelAndInput';
 
 function Register() {
   function handelSubmit(e) {
-    e.preventDefault()
+    e.preventDefault();
   }
 
   return (
@@ -28,7 +28,6 @@ function Register() {
         name="email"
         id="email"
         placeholder="Ex. nom.prenom@gmail.com"
-        autoFocus
         label="Email"
       />
       <LabelAndInput
@@ -40,7 +39,7 @@ function Register() {
       />
       <input type="submit" value="Creer un compte" />
     </form>
-  )
+  );
 }
 
-export default Register
+export default Register;

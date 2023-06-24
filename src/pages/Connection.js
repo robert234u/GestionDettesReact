@@ -1,10 +1,10 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import LabelAndInput from '../components/LabelAndInput'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import LabelAndInput from '../components/LabelAndInput';
 
 function Connection() {
   function handelSubmit(e) {
-    e.preventDefault()
+    e.preventDefault();
   }
 
   return (
@@ -34,7 +34,7 @@ function Connection() {
         </Link>
       </div>
     </div>
-  )
+  );
 }
 
-export default Connection
+export default Connection;

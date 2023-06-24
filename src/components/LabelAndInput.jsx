@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 function LabelAndInput({ type, name, id, placeholder, autoFocus, label }) {
   return (
@@ -9,11 +9,11 @@ function LabelAndInput({ type, name, id, placeholder, autoFocus, label }) {
         name={name}
         id={id}
         placeholder={placeholder}
-        {...(autoFocus ? 'autoFocus' : '')}
+        autoFocus={autoFocus}
         required
       />
     </div>
-  )
+  );
 }
 
-export default LabelAndInput
+export default LabelAndInput;

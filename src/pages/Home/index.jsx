@@ -1,78 +1,48 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import Contacts from '../../components/Contacts'
-
-function giveContactRequest(contacts) {
-  let contactRequests = []
-  contacts.map((contact) => {
-    if (contact.contactRequest) {
-      contactRequests.push(contact)
-    }
-  })
-  return contactRequests
-}
-
-function giveContacts(contacts) {
-  let myContacts = []
-  contacts.map((contact) => {
-    if (contact.inMyContact) {
-      myContacts.push(contact)
-    }
-  })
-  return myContacts
-}
-
-function giveOtherContacts(contacts) {
-  let otherContacts = []
-  contacts.map((contact) => {
-    if (!contact.inMyContact && !contact.contactRequest) {
-      otherContacts.push(contact)
-    }
-  })
-  return otherContacts
-}
+import React from 'react';
+import { Link } from 'react-router-dom';
+import ContactRequests from '../../components/ContactRequests';
+import MyContacts from '../../components/MyContacts';
+import Recommendations from '../../components/Recommendations';
 
 function Home() {
-  let contacts = [
+  let myContacts = [
     {
       id: 1,
       name: 'ROBERT',
       firstName: 'Colin',
-      inMyContact: true,
-      contactRequest: false,
       credit: 15.2,
       imagePath: '',
     },
+  ];
+  let contactRequests = [
     {
       id: 2,
       name: 'PEZZOTTA',
       firstName: 'Coralie',
-      inMyContact: false,
-      contactRequest: true,
       imagePath: '',
     },
+  ];
+  let recommendations = [
     {
       id: 3,
       name: 'ROBERT',
       firstName: 'Etienne',
-      inMyContact: false,
-      contactRequest: false,
       imagePath: '',
     },
-  ]
+  ];
 
   return (
     <div>
       <Link to="/connection">Connection</Link>
       <br />
       <label>Demande</label>
-      <Contacts contacts={giveContactRequest(contacts)} />
+      <ContactRequests contacts={contactRequests} />
       <label>Mes contacts</label>
-      <Contacts contacts={giveContacts(contacts)} />
+      <MyContacts contacts={myContacts} />
       <label>Autre contacts</label>
-      <Contacts contacts={giveOtherContacts(contacts)} />
+      <Recommendations contacts={recommendations} />
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;
