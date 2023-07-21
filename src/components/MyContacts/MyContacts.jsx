@@ -3,13 +3,13 @@ import MyContact from './MyContact';
 
 function MyContacts({ contacts }) {
   return (
-    <div>
+    <div className="gap">
       {contacts.map((contact) => (
         <MyContact
           key={contact.id}
           name={contact.name}
           firstName={contact.firstName}
-          imagePath={contact.imagePath}
+          image={contact.image}
           credit={contact.credit}
         />
       ))}

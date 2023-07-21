@@ -1,19 +1,19 @@
 import React from 'react';
-import ContactRequest from './ContactRequest';
+import Recommendation from './Recommendation';
 
-function ContactRequests({ contacts }) {
+function Recommendations({ contacts }) {
   return (
-    <div>
+    <div className="gap">
       {contacts.map((contact) => (
-        <ContactRequest
+        <Recommendation
           key={contact.id}
           name={contact.name}
           firstName={contact.firstName}
-          imagePath={contact.imagePath}
+          image={contact.image}
         />
       ))}
     </div>
   );
 }
 
-export default ContactRequests;
+export default Recommendations;

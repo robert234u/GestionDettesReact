@@ -1,0 +1,67 @@
+.gradient-border {
+  width: 175px;
+  height: 40px;
+  padding: 1px;
+  border-radius: 100px;
+  background: linear-gradient(180deg, #eb00d3 0%, #9a20b9 100%);
+}
+
+.background-white {
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  border-radius: inherit;
+  background: white;
+}
+
+.btn-secondary {
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(180deg, #eb00d3 0%, #9a20b9 100%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.btn-primary {
+  margin-top: 10px;
+  color: white;
+  width: 175px;
+  height: 40px;
+  border-radius: 100px;
+  background: linear-gradient(180deg, #eb00d3 0%, #9a20b9 100%);
+}
+
+.btn-dropDown {
+  width: 150px;
+  height: 30px;
+  background: #f5f5f5;
+  border-radius: 10px;
+}
+
+.txt-btn-primary {
+  font-size: 15px;
+  color: #606060;
+  background: none;
+}
+
+.txt-btn-red {
+  background: none;
+  color: red;
+}
+
+.txt-btn-green {
+  background: none;
+  color: green;
+}
+
+.txt-btn-small-red {
+  font-size: 15px;
+  background: none;
+  color: red;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+}

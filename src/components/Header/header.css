@@ -1,0 +1,79 @@
+.header {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(180deg, #eb00d3 0%, #9a20b9 100%);
+  height: 40px;
+  padding: 5px;
+  & .avatar {
+    height: 40px;
+    width: 40px;
+  }
+}
+
+.menu {
+  position: relative;
+}
+
+.dropDown {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  border: none;
+  padding: 0;
+  background: none;
+  display: block;
+  height: 20px;
+  width: 20px;
+  position: relative;
+}
+
+.isCross .bar2 {
+  transform: scale(1) rotate(-45deg);
+}
+.isCross .bar1 {
+  transform: scale(1) rotate(45deg);
+}
+.isCross .dots {
+  transform: rotate(135deg);
+}
+
+.dots {
+  position: absolute;
+  height: 20px;
+  top: 0;
+  left: 7.625px;
+  z-index: 1;
+  transition: all 0.1s;
+}
+
+.bar1 {
+  position: absolute;
+  top: 0;
+  left: 7.625px;
+  height: 100%;
+  width: 4.75px;
+  border-radius: 10px;
+  background: white;
+  z-index: 2;
+  transform: scale(0) rotate(45deg);
+  transition: all 0.1s 0.1s;
+}
+
+.bar2 {
+  position: absolute;
+  top: 0;
+  left: 7.625px;
+  height: 100%;
+  width: 4.75px;
+  border-radius: 10px;
+  background: white;
+  z-index: 3;
+  transform: scale(0) rotate(-45deg);
+  transition: all 0.1s 0.2s;
+}

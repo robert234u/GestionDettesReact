@@ -1,21 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Connection from './pages/Connection';
-import Register from './pages/Register';
-import './styles/index.css';
-import Home from './pages/Home';
+import './index.css';
+
+import { ConnectionProvider } from './hooks/useConnection';
+import AppRouter from './router';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/connection" element={<Connection />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="*" element={<Home />} />
-      </Routes>
-    </Router>
+    <ConnectionProvider>
+      <AppRouter />
+    </ConnectionProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
