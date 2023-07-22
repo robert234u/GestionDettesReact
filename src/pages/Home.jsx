@@ -7,10 +7,13 @@ import MyContacts from '../components/MyContacts/MyContacts';
 import Recommendations from '../components/Recommendations/Recommendations';
 import image from '../assets/avatar.svg';
 import Header from '../components/Header/Header';
-import { GetFriends } from '../components/callAPI';
+import { useGetFriends } from '../hooks/callAPI';
 
 function Home() {
   const { connection } = useContext(ConnectionContext);
+  const { data } = useGetFriends();
+
+  console.log(data);
 
   let myContacts = [
     {
@@ -46,7 +49,6 @@ function Home() {
   return (
     <div className="gap">
       <Header />
-      <GetFriends />
       <div className="columnCenter">
         <label>{`${connection.firstName} ${connection.name}`}</label>
         <img src={image} className="myAvatar" />
