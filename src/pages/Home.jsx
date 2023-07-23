@@ -11,12 +11,9 @@ import { useGetFriends } from '../hooks/callAPI';
 
 function Home() {
   const { connection } = useContext(ConnectionContext);
-  const { friends, transactions } = useGetFriends();
+  const { friendsWithCredit } = useGetFriends();
 
-  console.log(friends);
-  console.log(transactions);
-
-  let myContacts = friends;
+  let myContacts = friendsWithCredit;
   let contactRequests = [
     {
       id: 2,

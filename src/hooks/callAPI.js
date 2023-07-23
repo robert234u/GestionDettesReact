@@ -66,5 +66,21 @@ export function useGetFriends() {
     }
   ); // donne toutes les transactions qui me conserne
 
-  return { friends, transactions };
+  function GetFriends() {
+    if (friends !== undefined && transactions !== undefined) {
+      friends.forEach((friend) => {
+        friend.credit = 0;
+        transactions.forEach((transaction) => {
+          if (friend.id === transaction.user) {
+            friend.credit += transaction.amont;
+          }
+        });
+      });
+    }
+    return friends;
+  }
+
+  const friendsWithCredit = GetFriends();
+
+  return { friendsWithCredit };
 }
