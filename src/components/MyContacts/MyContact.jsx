@@ -8,7 +8,7 @@ function MyContact({ name, firstName, image, credit }) {
     if (credit >= 0) {
       return 'Crédit ' + credit + ' €';
     } else if (credit < 0) {
-      return 'Dette ' + credit + ' €';
+      return 'Dette ' + credit * -1 + ' €';
     } else {
       return '';
     }
@@ -19,7 +19,9 @@ function MyContact({ name, firstName, image, credit }) {
       <div className="widthMax">
         <div className="rowCenter widthMax separate">
           <p>{firstName + ' ' + name}</p>
-          <p>{creditOrDebt(credit)}</p>
+          <p className={`${credit < 0 && 'red'} ${credit > 0 && 'green'}`}>
+            {creditOrDebt(credit)}
+          </p>
         </div>
         <div className="rowCenter widthMax separate">
           <TextButton color="small-red">Supprimer</TextButton>
