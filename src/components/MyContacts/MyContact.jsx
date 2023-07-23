@@ -5,7 +5,7 @@ import TextButton from '../Button/TextButton';
 
 function MyContact({ name, firstName, image, credit }) {
   function creditOrDebt(credit) {
-    if (credit > 0) {
+    if (credit >= 0) {
       return 'Crédit ' + credit + ' €';
     } else if (credit < 0) {
       return 'Dette ' + credit + ' €';

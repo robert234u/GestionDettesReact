@@ -16,15 +16,15 @@ export function useGetFriends() {
               connection.email
             ) {
               return {
-                id: relation.attributes.user2.data.attributes.id,
-                firstname: relation.attributes.user2.data.attributes.firstname,
+                id: relation.attributes.user2.data.attributes.email,
+                firstName: relation.attributes.user2.data.attributes.firstname,
                 name: relation.attributes.user2.data.attributes.lastname,
                 credit: 0,
               };
             } else {
               return {
                 id: relation.attributes.user1.data.attributes.id,
-                firstname: relation.attributes.user1.data.attributes.firstname,
+                firstName: relation.attributes.user1.data.attributes.firstname,
                 name: relation.attributes.user1.data.attributes.lastname,
                 credit: 0,
               };

@@ -13,16 +13,7 @@ function Home() {
   const { connection } = useContext(ConnectionContext);
   const { data } = useGetFriends();
 
-  data;
-
-  let myContacts = [
-    {
-      id: 1,
-      name: 'ROBERT',
-      firstName: 'Colin',
-      credit: 15.2,
-    },
-  ];
+  let myContacts = data;
   let contactRequests = [
     {
       id: 2,
