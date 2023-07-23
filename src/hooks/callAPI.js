@@ -23,7 +23,7 @@ export function useGetFriends() {
               };
             } else {
               return {
-                id: relation.attributes.user1.data.attributes.id,
+                id: relation.attributes.user1.data.attributes.email,
                 firstName: relation.attributes.user1.data.attributes.firstname,
                 name: relation.attributes.user1.data.attributes.lastname,
                 credit: 0,
