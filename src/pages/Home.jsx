@@ -11,9 +11,12 @@ import { useGetFriends } from '../hooks/callAPI';
 
 function Home() {
   const { connection } = useContext(ConnectionContext);
-  const { data } = useGetFriends();
+  const { friends, transactions } = useGetFriends();
 
-  let myContacts = data;
+  console.log(friends);
+  console.log(transactions);
+
+  let myContacts = friends;
   let contactRequests = [
     {
       id: 2,
@@ -49,7 +52,7 @@ function Home() {
           <ContactRequests contacts={contactRequests} />
         </article>
       )}
-      {myContacts.length > 0 && (
+      {myContacts != undefined && (
         <article>
           <label>Mes contacts</label>
           <MyContacts contacts={myContacts} />

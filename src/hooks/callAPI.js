@@ -5,7 +5,7 @@ import { ConnectionContext } from './useConnection';
 export function useGetFriends() {
   const { connection } = useContext(ConnectionContext);
 
-  let { data } = useFetch(
+  const { data: friends } = useFetch(
     `http://localhost:1337/api/friends?populate=*&filters[$or][0][user1][email][$eq]=${connection.email}&filters[$or][1][user2][email][$eq]=${connection.email}`,
     {
       mapData: (rel) => {
@@ -16,14 +16,14 @@ export function useGetFriends() {
               connection.email
             ) {
               return {
-                id: relation.attributes.user2.data.attributes.email,
+                id: relation.attributes.user2.data.id,
                 firstName: relation.attributes.user2.data.attributes.firstname,
                 name: relation.attributes.user2.data.attributes.lastname,
                 credit: 0,
               };
             } else {
               return {
-                id: relation.attributes.user1.data.attributes.email,
+                id: relation.attributes.user1.data.id,
                 firstName: relation.attributes.user1.data.attributes.firstname,
                 name: relation.attributes.user1.data.attributes.lastname,
                 credit: 0,
@@ -33,12 +33,13 @@ export function useGetFriends() {
         });
       },
     }
-  ); // donne la liste des amis avec un credit nul
+  ); // donne la liste de mes amis avec un credit temporairement nul
 
-  /* useFetch(
+  const { data: transactions } = useFetch(
     `http://localhost:1337/api/transactions?populate=*&filters[$or][0][sender][email][$eq]=${connection.email}&filters[$or][1][receiver][email][$eq]=${connection.email}`,
     {
       mapData: (tran) => {
+        let tranReturn = [];
         tran.data.forEach((transaction) => {
           if (
             transaction.attributes.comfirmedByReceiver &&
@@ -48,29 +49,22 @@ export function useGetFriends() {
               transaction.attributes.receiver.data.attributes.email ==
               connection.email
             ) {
-              data.forEach((friend) => {
-                if (
-                  friend.email ==
-                  transaction.attributes.sender.data.attributes.email
-                ) {
-                  friend.credit -= transaction.attributes.amount;
-                }
+              tranReturn.push({
+                user: transaction.attributes.sender.data.id,
+                amont: transaction.attributes.amount * -1,
               });
             } else {
-              data.forEach((friend) => {
-                if (
-                  friend.email ==
-                  transaction.attributes.receiver.data.attributes.email
-                ) {
-                  friend.credit += transaction.attributes.amount;
-                }
+              tranReturn.push({
+                user: transaction.attributes.receiver.data.id,
+                amont: transaction.attributes.amount,
               });
             }
           }
         });
+        return tranReturn;
       },
     }
-  ); */
+  ); // donne toutes les transactions qui me conserne
 
-  return { data };
+  return { friends, transactions };
 }

@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { ConnectionContext } from './useConnection';
 
 export default function useFetch(url, options) {
-  const [data, setData] = useState({});
+  const [data, setData] = useState(undefined);
   const { token } = useContext(ConnectionContext);
 
   const _mapData = options?.mapData || ((data) => data);
