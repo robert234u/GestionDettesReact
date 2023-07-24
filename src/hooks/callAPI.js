@@ -9,28 +9,30 @@ export function useGetFriends() {
     `http://localhost:1337/api/friends?populate=*&filters[$or][0][user1][email][$eq]=${connection.email}&filters[$or][1][user2][email][$eq]=${connection.email}`,
     {
       mapData: (rel) => {
-        return rel.data.map((relation) => {
+        let relReturn = [];
+        rel.data.forEach((relation) => {
           if (relation.attributes.comfirmed) {
             if (
               relation.attributes.user1.data.attributes.email ==
               connection.email
             ) {
-              return {
+              relReturn.push({
                 id: relation.attributes.user2.data.id,
                 firstName: relation.attributes.user2.data.attributes.firstname,
                 name: relation.attributes.user2.data.attributes.lastname,
                 credit: 0,
-              };
+              });
             } else {
-              return {
+              relReturn.push({
                 id: relation.attributes.user1.data.id,
                 firstName: relation.attributes.user1.data.attributes.firstname,
                 name: relation.attributes.user1.data.attributes.lastname,
                 credit: 0,
-              };
+              });
             }
           }
         });
+        return relReturn;
       },
     }
   ); // donne la liste de mes amis avec un credit temporairement nul
@@ -67,7 +69,7 @@ export function useGetFriends() {
   ); // donne toutes les transactions qui me conserne
 
   function GetFriends() {
-    if (friends !== undefined && transactions !== undefined) {
+    if (friends != undefined && transactions != undefined) {
       friends.forEach((friend) => {
         friend.credit = 0;
         transactions.forEach((transaction) => {
@@ -83,4 +85,25 @@ export function useGetFriends() {
   const friendsWithCredit = GetFriends();
 
   return { friendsWithCredit };
+}
+
+export function useGetRequests() {
+  const { connection } = useContext(ConnectionContext);
+
+  const { data } = useFetch(
+    `http://localhost:1337/api/friends?populate=*&filters[$and][0][user2][email][$eq]=${connection.email}&filters[$and][1][comfirmed][$eq]=false`,
+    {
+      mapData: (req) => {
+        return req.data.map((request) => {
+          return {
+            id: request.attributes.user1.data.id,
+            firstName: request.attributes.user1.data.attributes.firstname,
+            name: request.attributes.user1.data.attributes.lastname,
+          };
+        });
+      },
+    }
+  );
+
+  return { data };
 }

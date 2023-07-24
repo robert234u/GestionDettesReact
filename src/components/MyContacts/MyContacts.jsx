@@ -10,7 +10,7 @@ function MyContacts({ contacts }) {
           key={contact.id}
           name={contact.name}
           firstName={contact.firstName}
-          image={image}
+          image={contact.image ? contact.image : image}
           credit={contact.credit}
         />
       ))}

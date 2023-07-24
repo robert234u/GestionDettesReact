@@ -7,27 +7,15 @@ import MyContacts from '../components/MyContacts/MyContacts';
 import Recommendations from '../components/Recommendations/Recommendations';
 import image from '../assets/avatar.svg';
 import Header from '../components/Header/Header';
-import { useGetFriends } from '../hooks/callAPI';
+import { useGetFriends, useGetRequests } from '../hooks/callAPI';
 
 function Home() {
   const { connection } = useContext(ConnectionContext);
   const { friendsWithCredit } = useGetFriends();
+  const { data: requests } = useGetRequests();
 
   let myContacts = friendsWithCredit;
-  let contactRequests = [
-    {
-      id: 2,
-      name: 'PEZZOTTA',
-      firstName: 'Coralie',
-      image: image,
-    },
-    {
-      id: 4,
-      name: 'MULLER',
-      firstName: 'Geof',
-      image: image,
-    },
-  ];
+  let contactRequests = requests;
   let recommendations = [
     {
       id: 3,
@@ -38,12 +26,12 @@ function Home() {
   ];
   return (
     <div className="gap">
-      <Header />
+      <Header noAvatar />
       <div className="columnCenter">
         <label>{`${connection.firstName} ${connection.name}`}</label>
         <img src={image} className="myAvatar" />
       </div>
-      {contactRequests.length > 0 && (
+      {contactRequests != undefined && (
         <article>
           <label>Demandes</label>
           <ContactRequests contacts={contactRequests} />

@@ -1,5 +1,6 @@
 import React from 'react';
 import ContactRequest from './ContactRequest';
+import image from '../../assets/avatar.svg';
 
 function ContactRequests({ contacts }) {
   return (
@@ -9,7 +10,7 @@ function ContactRequests({ contacts }) {
           key={contact.id}
           name={contact.name}
           firstName={contact.firstName}
-          image={contact.image}
+          image={contact.image ? contact.image : image}
         />
       ))}
     </div>

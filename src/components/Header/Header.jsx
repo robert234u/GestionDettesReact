@@ -6,7 +6,7 @@ import { ConnectionContext } from '../../hooks/useConnection';
 import Button from '../Button/Button';
 import useClickOutside from '../../hooks/useClickOutside';
 
-export default function Header() {
+export default function Header({ noAvatar }) {
   const { logout } = useContext(ConnectionContext);
   const [menuDisplay, setMenuDisplay] = useState(false);
 
@@ -42,7 +42,7 @@ export default function Header() {
           <></>
         )}
       </div>
-      <img src={avatar} className="avatar" />
+      {noAvatar == undefined && <img src={avatar} className="avatar" />}
     </div>
   );
 }

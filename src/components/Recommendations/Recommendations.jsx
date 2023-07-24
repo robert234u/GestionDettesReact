@@ -1,5 +1,6 @@
 import React from 'react';
 import Recommendation from './Recommendation';
+import image from '../../assets/avatar.svg';
 
 function Recommendations({ contacts }) {
   return (
@@ -9,7 +10,7 @@ function Recommendations({ contacts }) {
           key={contact.id}
           name={contact.name}
           firstName={contact.firstName}
-          image={contact.image}
+          image={contact.image ? contact.image : image}
         />
       ))}
     </div>

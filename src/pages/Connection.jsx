@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { ConnectionContext } from '../hooks/useConnection';
@@ -9,6 +9,7 @@ import Button from '../components/Button/Button';
 function Connection() {
   const { createConnection, setToken } = useContext(ConnectionContext);
   const navigate = useNavigate();
+  const [status, setStatus] = useState(200);
 
   async function login(identifier, password) {
     try {
@@ -18,6 +19,7 @@ function Connection() {
         headers: { 'Content-Type': 'application/json' },
       });
       const data = await response.json();
+      setStatus(response.status);
       if (!data.error) {
         setToken(data.jwt);
         createConnection({
@@ -29,7 +31,17 @@ function Connection() {
         navigate('/');
       }
     } catch (error) {
-      console.log(error);
+      setStatus('error');
+    }
+  }
+
+  function errorDisplay() {
+    if (status === 400) {
+      return <p className="red">Email ou mot de passe erroné !</p>;
+    } else if (status === 'error') {
+      return <p className="red">Probleme de connexion !</p>;
+    } else if (status !== 200) {
+      return <p className="red">Il y a un probleme !</p>;
     }
   }
 
@@ -39,6 +51,7 @@ function Connection() {
   }
   return (
     <div className="pageCenter">
+      {errorDisplay()}
       <form onSubmit={handelSubmit} className="columnCenter">
         <LabelAndInput
           type="email"
