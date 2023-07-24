@@ -12,10 +12,6 @@ body {
   padding: 0px;
 }
 
-article {
-  padding: 0 10px 0 10px;
-}
-
 form {
   width: 100%;
 }
@@ -25,11 +21,16 @@ p {
 }
 
 a {
-  cursor: default;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 button {
   padding: 0;
+}
+
+.padding {
+  padding: 0 10px 0 10px;
 }
 
 .red {
@@ -38,6 +39,11 @@ button {
 
 .green {
   color: green;
+}
+
+.smallGrey {
+  font-size: 15px;
+  color: #606060;
 }
 
 input {

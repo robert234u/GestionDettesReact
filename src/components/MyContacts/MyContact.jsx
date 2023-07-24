@@ -2,8 +2,9 @@ import React from 'react';
 import CardImageAndName from '../CardWithImage';
 import dollar from '../../assets/dollar.svg';
 import TextButton from '../Button/TextButton';
+import { Link } from 'react-router-dom';
 
-function MyContact({ name, firstName, image, credit }) {
+function MyContact({ name, firstName, image, credit, id }) {
   function creditOrDebt(credit) {
     if (credit >= 0) {
       return 'Crédit ' + credit + ' €';
@@ -25,10 +26,12 @@ function MyContact({ name, firstName, image, credit }) {
         </div>
         <div className="rowCenter widthMax separate">
           <TextButton color="small-red">Supprimer</TextButton>
-          <TextButton color="primary" className="rowCenter">
-            Historique
-            <img src={dollar} className="goldDollar" />
-          </TextButton>
+          <Link to={`/history/${id}`}>
+            <TextButton color="primary" className="rowCenter">
+              Historique
+              <img src={dollar} className="goldDollar" />
+            </TextButton>
+          </Link>
         </div>
       </div>
     </CardImageAndName>

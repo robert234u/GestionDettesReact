@@ -8,6 +8,7 @@ function MyContacts({ contacts }) {
       {contacts.map((contact) => (
         <MyContact
           key={contact.id}
+          id={contact.id}
           name={contact.name}
           firstName={contact.firstName}
           image={contact.image ? contact.image : image}

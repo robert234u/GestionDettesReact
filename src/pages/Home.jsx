@@ -18,37 +18,38 @@ function Home() {
   let contactRequests = requests;
   let recommendations = [
     {
-      id: 3,
-      name: 'ROBERT',
-      firstName: 'Etienne',
-      image: image,
+      id: 0,
+      name: 'NOM',
+      firstName: 'PRENOM',
     },
   ];
   return (
     <div className="gap">
       <Header noAvatar />
-      <div className="columnCenter">
-        <label>{`${connection.firstName} ${connection.name}`}</label>
-        <img src={image} className="myAvatar" />
+      <div className="padding gap">
+        <div className="columnCenter">
+          <label>{`${connection.firstName} ${connection.name}`}</label>
+          <img src={image} className="myAvatar" />
+        </div>
+        {contactRequests != undefined && (
+          <article>
+            <label>Demandes</label>
+            <ContactRequests contacts={contactRequests} />
+          </article>
+        )}
+        {myContacts != undefined && (
+          <article>
+            <label>Mes contacts</label>
+            <MyContacts contacts={myContacts} />
+          </article>
+        )}
+        {recommendations.length > 0 && (
+          <article>
+            <label>Autre contacts</label>
+            <Recommendations contacts={recommendations} />
+          </article>
+        )}
       </div>
-      {contactRequests != undefined && (
-        <article>
-          <label>Demandes</label>
-          <ContactRequests contacts={contactRequests} />
-        </article>
-      )}
-      {myContacts != undefined && (
-        <article>
-          <label>Mes contacts</label>
-          <MyContacts contacts={myContacts} />
-        </article>
-      )}
-      {recommendations.length > 0 && (
-        <article>
-          <label>Autre contacts</label>
-          <Recommendations contacts={recommendations} />
-        </article>
-      )}
     </div>
   );
 }

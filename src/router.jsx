@@ -10,6 +10,7 @@ import Register from './pages/Register';
 import './index.css';
 import Home from './pages/Home';
 import { ConnectionContext } from './hooks/useConnection';
+import History from './pages/History';
 
 function AuthRoutes({ element }) {
   const { isAuth } = useContext(ConnectionContext);
@@ -25,6 +26,7 @@ export default function AppRouter() {
         <Route path="/connection" element={<Connection />} />
         <Route path="/register" element={<Register />} />
         <Route path="*" element={<Navigate replace to="/" />} />
+        <Route path="/history/:id" element={<History />} />
       </Routes>
     </Router>
   );

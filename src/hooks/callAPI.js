@@ -107,3 +107,57 @@ export function useGetRequests() {
 
   return { data };
 }
+
+export function useGetTransactionById(id) {
+  const { connection } = useContext(ConnectionContext);
+
+  const { data } = useFetch(
+    `http://localhost:1337/api/transactions?populate=*&filters[$or][0][$and][0][sender][email][$eq]=${connection.email}&filters[$or][0][$and][1][receiver][id][$eq]=${id}*&filters[$or][1][$and][0][sender][id][$eq]=${id}&filters[$or][1][$and][1][receiver][email][$eq]=${connection.email}`,
+    {
+      mapData: (tran) => {
+        let tranReturn = [];
+        tran.data.forEach((transaction) => {
+          if (
+            transaction.attributes.comfirmedByReceiver &&
+            transaction.attributes.comfirmedBySender
+          ) {
+            if (
+              transaction.attributes.receiver.data.attributes.email ==
+              connection.email
+            ) {
+              tranReturn.push({
+                amount: transaction.attributes.amount * -1,
+                date: transaction.attributes.createdAt,
+                id: transaction.id,
+              });
+            } else {
+              tranReturn.push({
+                amount: transaction.attributes.amount,
+                date: transaction.attributes.createdAt,
+                id: transaction.id,
+              });
+            }
+          }
+        });
+        return tranReturn;
+      },
+    }
+  );
+
+  return { data };
+}
+
+export function useGetUserById(id) {
+  const { data } = useFetch(
+    `http://localhost:1337/api/users?populate=*&filters[id][$eq]=${id}`,
+    {
+      mapData: (user) => {
+        return {
+          name: user[0].lastname,
+          firstName: user[0].firstname,
+        };
+      },
+    }
+  );
+  return { data };
+}

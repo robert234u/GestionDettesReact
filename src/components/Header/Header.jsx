@@ -5,6 +5,7 @@ import './header.css';
 import { ConnectionContext } from '../../hooks/useConnection';
 import Button from '../Button/Button';
 import useClickOutside from '../../hooks/useClickOutside';
+import { Link } from 'react-router-dom';
 
 export default function Header({ noAvatar }) {
   const { logout } = useContext(ConnectionContext);
@@ -42,7 +43,11 @@ export default function Header({ noAvatar }) {
           <></>
         )}
       </div>
-      {noAvatar == undefined && <img src={avatar} className="avatar" />}
+      {noAvatar == undefined && (
+        <Link to="/">
+          <img src={avatar} className="avatar" />
+        </Link>
+      )}
     </div>
   );
 }
